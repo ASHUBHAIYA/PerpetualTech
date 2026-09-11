@@ -2,7 +2,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "authorizetech",
   "compatibility_date": "2026-01-01",
-  "pages_build_output_dir": "dist",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
   "d1_databases": [
     {
       "binding": "perpetualtech_db",
