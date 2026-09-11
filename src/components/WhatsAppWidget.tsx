@@ -13,9 +13,9 @@ export default function WhatsAppWidget() {
 
   const openWhatsApp = () => {
     const text = encodeURIComponent(
-      message || "Hi PerpetualTech, I'd like to discuss a project."
+      message || "Hi AuthorizeTech, I'd like to discuss a project."
     );
-    window.open(`https://wa.me/919999999999?text=${text}`, '_blank');
+    window.open(`https://wa.me/9198871217486?text=${text}`, '_blank');
     setMessage('');
     setOpen(false);
   };
@@ -48,7 +48,7 @@ export default function WhatsAppWidget() {
           <div className="p-4 bg-slate-50">
             <div className="bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-3 mb-4 max-w-[85%]">
               <p className="text-sm text-slate-700">
-                Hi! Thanks for reaching out to PerpetualTech. How can we help you
+                Hi! Thanks for reaching out to AuthorizeTech. How can we help you
                 build something resilient today?
               </p>
             </div>

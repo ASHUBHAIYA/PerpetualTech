@@ -46,7 +46,7 @@ export default function Header() {
             <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse-dot ring-2 ring-white" />
           </div>
           <span className="text-lg font-bold tracking-tight text-slate-900">
-            Perpetual<span className="text-sky-600">Tech</span>
+            Authorize<span className="text-sky-600">Tech</span>
           </span>
         </button>
 

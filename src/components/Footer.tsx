@@ -26,7 +26,7 @@ export default function Footer() {
                 <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse-dot ring-2 ring-white" />
               </div>
               <span className="text-lg font-bold tracking-tight text-slate-900">
-                Perpetual<span className="text-sky-600">Tech</span>
+                Authorize<span className="text-sky-600">Tech</span>
               </span>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed mb-5 max-w-sm">
@@ -35,11 +35,11 @@ export default function Footer() {
             </p>
             <div className="space-y-2.5">
               <a
-                href="mailto:contact@perpetualtech.in"
+                href="mailto:contact@authorizetech.in"
                 className="flex items-center gap-2 text-sm text-slate-600 hover:text-sky-600 transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                contact@perpetualtech.in
+                contact@authorizetech.in
               </a>
               <div className="flex items-center gap-2 text-sm text-slate-600">
                 <MapPin className="w-4 h-4" />
@@ -84,7 +84,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
-            &copy; 2026 PerpetualTech. All rights reserved.
+            &copy; 2026 AuthorizeTech. All rights reserved.
           </p>
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">

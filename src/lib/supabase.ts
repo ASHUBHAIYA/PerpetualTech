@@ -1,6 +1,10 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// src/lib/supabase.ts
+export const supabase = {
+  from: () => ({
+    insert: async (data: any) => {
+      console.log('Mocked submission (Supabase disabled):', data);
+      return { data: null, error: null };
+    },
+    select: async () => ({ data: [], error: null }),
+  }),
+};

@@ -29,7 +29,7 @@ const terminalLines = [
   { text: 'Deploying to AWS EC2... [OK]', type: 'out' },
   { text: 'SSL certificate verified ✓', type: 'success' },
   { text: 'Health check passed ✓', type: 'success' },
-  { text: 'Deployment live at perpetualtech.in', type: 'success' },
+  { text: 'Deployment live at authorizetech.in', type: 'success' },
 ];
 
 export default function Hero() {
@@ -134,7 +134,7 @@ export default function Hero() {
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
                 <span className="text-xs text-slate-400 ml-2 font-mono">
-                  deploy@perpetualtech: ~
+                  deploy@Authorizetech: ~
                 </span>
               </div>
 

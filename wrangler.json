@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "perpetualtech",
+  "compatibility_date": "2026-01-01",
+  "pages_build_output_dir": "dist",
+  "d1_databases": [
+    {
+      "binding": "perpetualtech_db",
+      "database_name": "perpetualtech-db",
+      "database_id": "bd87d099-16ff-4b9c-b749-8a00008679ff"
+    }
+  ]
+}

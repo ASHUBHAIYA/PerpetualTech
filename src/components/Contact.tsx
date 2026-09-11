@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState } from 'react';
 import {
   User,
   Mail,
@@ -10,7 +10,6 @@ import {
   Send,
   AlertCircle,
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
 
 const budgetRanges = [
   '₹50,000 - ₹1,00,000',
@@ -34,9 +33,7 @@ export default function Contact() {
     services: [] as string[],
     project_description: '',
   });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>(
-    'idle'
-  );
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
   const toggleService = (key: string) => {
@@ -48,27 +45,39 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.services.length === 0) {
-      setStatus('error');
-      setErrorMsg('Please select at least one service.');
-      return;
-    }
     setStatus('loading');
     setErrorMsg('');
 
     try {
-      const { error } = await supabase.from('contact_submissions').insert({
-        full_name: form.full_name,
-        email: form.email,
-        company: form.company || null,
-        budget_range: form.budget_range || null,
-        services: form.services,
-        project_description: form.project_description || null,
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
       });
 
-      if (error) throw error;
+      const text = await response.text();
+      let data: { error?: string } = {};
+
+      if (text) {
+        try {
+          data = JSON.parse(text);
+        } catch {
+          data = { error: text };
+        }
+      }
+
+      if (!response.ok) {
+        throw new Error(
+          data.error ||
+            (response.status === 404
+              ? 'API route not found. Make sure Wrangler is serving the API.'
+              : `Server error: HTTP ${response.status}`)
+        );
+      }
 
       setStatus('success');
       setForm({
@@ -79,13 +88,13 @@ export default function Contact() {
         services: [],
         project_description: '',
       });
-    } catch (err) {
+    } catch (error: unknown) {
       setStatus('error');
-      setErrorMsg(
-        err instanceof Error
-          ? err.message
-          : 'Something went wrong. Please try again.'
-      );
+      if (error instanceof Error) {
+        setErrorMsg(error.message);
+      } else {
+        setErrorMsg('Something went wrong. Please try again.');
+      }
     }
   };
 
