@@ -1,13 +1,11 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "authorizetech",
+  "main": "src/worker.ts",
   "compatibility_date": "2026-01-01",
-  "observability": {
-    "enabled": true,
-    "head_sampling_rate": 1
-  },
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "single-page-application"
   },
   "d1_databases": [
