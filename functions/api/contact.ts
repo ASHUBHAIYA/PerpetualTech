@@ -66,7 +66,7 @@ export const onRequestPost = async (context: any): Promise<Response> => {
         },
         body: JSON.stringify({
           from: 'onboarding@resend.dev',
-          to: ['Abhishek791996@gmail.com'],
+          to: ['abhishek791996@gmail.com'],
           reply_to: email,
           subject: `New Inquiry from ${full_name}`,
           html: emailHtml,
