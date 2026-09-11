@@ -3,6 +3,11 @@
   "name": "authorizetech",
   "main": "src/worker.ts",
   "compatibility_date": "2026-01-01",
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": {
+    "enabled": true
+  },
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
