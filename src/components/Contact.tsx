@@ -131,10 +131,10 @@ export default function Contact() {
                 <div>
                   <div className="text-xs text-slate-500">Email us at</div>
                   <a
-                    href="mailto:contact@perpetualtech.in"
+                    href="mailto:contact@authorizetech.in"
                     className="text-sm text-slate-900 hover:text-sky-600 transition-colors"
                   >
-                    contact@perpetualtech.in
+                    contact@authorizetech.in
                   </a>
                 </div>
               </div>

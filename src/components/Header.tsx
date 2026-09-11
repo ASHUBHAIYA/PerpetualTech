@@ -66,7 +66,7 @@ export default function Header() {
         {/* Desktop Actions */}
         <div className="hidden lg:flex items-center gap-3">
           <a
-            href="https://wa.me/919999999999"
+            href="https://wa.me/918871217486"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-200 bg-white text-sm text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all duration-200"
@@ -108,7 +108,7 @@ export default function Header() {
             ))}
             <div className="flex flex-col gap-3 mt-4 mb-2">
               <a
-                href="https://wa.me/919999999999"
+                href="https://wa.me/918871217486"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-slate-200 bg-white text-sm text-slate-700"
