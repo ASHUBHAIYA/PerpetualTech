@@ -29,9 +29,9 @@ export const onRequestPost = async (context: any): Promise => {
     if (context.env?.perpetualtech_db) {
       await context.env.perpetualtech_db
         .prepare(
-          `INSERT INTO contact_submissions (
-            full_name, email, company, budget_range, services, project_description
-          ) VALUES (?, ?, ?, ?, ?, ?)`
+          'INSERT INTO contact_submissions (' +
+          'full_name, email, company, budget_range, services, project_description' +
+          ') VALUES (?, ?, ?, ?, ?, ?)'
         )
         .bind(
           full_name,
@@ -49,15 +49,5 @@ export const onRequestPost = async (context: any): Promise => {
       const formattedServices =
         services && services.length > 0 ? services.join(', ') : 'None specified';
 
-      await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${context.env.RESEND_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: 'onboarding@resend.dev',
-          to: ['Abhishek791996@gmail.com'],
-          reply_to: email,
-          subject: `New Inquiry from ${full_name}`,
-          html: `
+      const emailHtml =
+        '
