@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   ArrowRight,
   Layers,
@@ -34,6 +34,7 @@ const terminalLines = [
 
 export default function Hero() {
   const [visibleLines, setVisibleLines] = useState(0);
+  const terminalRef = useRef<HTMLDivElement>(null);
   const [cpuVal, setCpuVal] = useState(23);
   const [memVal, setMemVal] = useState(41);
   const [netVal, setNetVal] = useState(67);
@@ -44,6 +45,12 @@ export default function Hero() {
     }, 400);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [visibleLines]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -139,16 +146,16 @@ export default function Hero() {
               </div>
 
               {/* Terminal body - dark */}
-              <div className="p-4 h-56 overflow-hidden font-mono text-xs space-y-1 bg-slate-900">
+              <div ref={terminalRef} className="p-4 h-56 overflow-y-auto font-mono text-xs space-y-1 bg-slate-900 scrollbar-hide">
                 {terminalLines.slice(0, visibleLines).map((line, i) => (
                   <div
                     key={i}
                     className={
                       line.type === 'cmd'
-                        ? 'text-sky-400'
+                        ? 'text-sky-300'
                         : line.type === 'success'
-                          ? 'text-emerald-400'
-                          : 'text-slate-400'
+                          ? 'text-slate-300'
+                          : 'text-slate-300'
                     }
                   >
                     {line.text}
