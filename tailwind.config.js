@@ -12,7 +12,6 @@ export default {
         'surface-2': '#F1F5F9',
         accent: '#0284C7',
         'accent-light': '#0EA5E9',
-        emerald: '#10B981',
       },
       animation: {
         'pulse-dot': 'pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',

@@ -28,7 +28,7 @@ export default function WhatsAppWidget() {
     const text = encodeURIComponent(
       message || "Hi AuthorizeTech, I'd like to discuss a project."
     );
-    window.open(`https://wa.me/9198871217486?text=${text}`, '_blank');
+    window.open(`https://wa.me/918871217486?text=${text}`, '_blank');
     setMessage('');
     setOpen(false);
   };

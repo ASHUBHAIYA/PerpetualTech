@@ -1,3 +1,4 @@
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Boxes, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 
 const footerLinks = {
@@ -6,9 +7,63 @@ const footerLinks = {
   Legal: ['Privacy Policy', 'Terms of Service', 'SOW Portal', 'Refund Policy'],
 };
 
+const anchorMap: Record<string, string> = {
+  About: '#about',
+  Process: '#process',
+  Pricing: '#pricing',
+  'Tech Stack': '#tech-stack',
+  'Web Engineering': '#services',
+  'Cloud & DevOps': '#services',
+  'Performance Marketing': '#services',
+  'Managed Cloud': '#services',
+};
+
+const serviceKeyMap: Record<string, string> = {
+  'Web Engineering': 'web',
+  'Cloud & DevOps': 'cloud',
+  'Performance Marketing': 'marketing',
+  'Managed Cloud': 'managed',
+};
+
+const legalRouteMap: Record<string, string> = {
+  'Privacy Policy': '/privacy-policy',
+  'Terms of Service': '/terms-of-service',
+  'SOW Portal': '/sow-portal',
+  'Refund Policy': '/refund-policy',
+};
+
 export default function Footer() {
-  const scrollTo = (href: string) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToAnchor = (href: string) => {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleLinkClick = (link: string) => {
+    // Legal pages: navigate to a real route
+    if (legalRouteMap[link]) {
+      navigate(legalRouteMap[link]);
+      return;
+    }
+
+    // Service tabs: tell Services which tab to activate
+    if (serviceKeyMap[link]) {
+      window.dispatchEvent(
+        new CustomEvent('navigate-service', { detail: serviceKeyMap[link] })
+      );
+    }
+
+    // In-page anchors: if we're not on the home page, go home first, then scroll
+    const anchor = anchorMap[link];
+    if (anchor) {
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => scrollToAnchor(anchor), 100);
+      } else {
+        scrollToAnchor(anchor);
+      }
+    }
   };
 
   return (
@@ -57,19 +112,7 @@ export default function Footer() {
                 {links.map((link) => (
                   <li key={link}>
                     <button
-                      onClick={() => {
-                        const map: Record<string, string> = {
-                          About: '#about',
-                          Process: '#process',
-                          Pricing: '#pricing',
-                          'Tech Stack': '#tech-stack',
-                          'Web Engineering': '#services',
-                          'Cloud & DevOps': '#services',
-                          'Performance Marketing': '#services',
-                          'Managed Cloud': '#services',
-                        };
-                        if (map[link]) scrollTo(map[link]);
-                      }}
+                      onClick={() => handleLinkClick(link)}
                       className="text-sm text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1 group"
                     >
                       {link}
