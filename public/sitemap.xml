@@ -1,34 +1,33 @@
-https://authorizetech.in/
-    2026-09-12
-    weekly
-    1.0
-  
-
-  
-  
-    https://authorizetech.in/sow-portal
-    2026-09-12
-    monthly
-    0.8
-  
-
-  
-  
-    https://authorizetech.in/privacy-policy
-    2026-09-12
-    yearly
-    0.3
-  
-
-  
-    https://authorizetech.in/terms-of-service
-    2026-09-12
-    yearly
-    0.3
-  
-
-  
-    https://authorizetech.in/refund-policy
-    2026-09-12
-    yearly
-    0.3
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://authorizetech.in/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://authorizetech.in/privacy-policy</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://authorizetech.in/terms-of-service</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://authorizetech.in/sow-portal</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://authorizetech.in/refund-policy</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>
