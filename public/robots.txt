@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://authorizetech.in/sitemap.xml
+Sitemap: https://authorizetech.in/bharatcalc/sitemap.xml
