@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageCircle, Boxes } from 'lucide-react';
 
 const navLinks = [
@@ -13,6 +14,8 @@ const navLinks = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -22,7 +25,23 @@ export default function Header() {
 
   const scrollTo = (href: string) => {
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const goHome = () => {
+    setMobileOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -36,7 +55,7 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-6 md:px-10 lg:px-20 h-16 flex items-center justify-between">
         {/* Logo */}
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={goHome}
           className="flex items-center gap-2.5 group"
         >
           <div className="relative">
@@ -46,7 +65,7 @@ export default function Header() {
             <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse-dot ring-2 ring-white" />
           </div>
           <span className="text-lg font-bold tracking-tight text-slate-900">
-            Perpetual<span className="text-sky-600">Tech</span>
+            Authorize<span className="text-sky-600">Tech</span>
           </span>
         </button>
 
@@ -66,7 +85,7 @@ export default function Header() {
         {/* Desktop Actions */}
         <div className="hidden lg:flex items-center gap-3">
           <a
-            href="https://wa.me/919999999999"
+            href="https://wa.me/918871217486"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-200 bg-white text-sm text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all duration-200"
@@ -108,7 +127,7 @@ export default function Header() {
             ))}
             <div className="flex flex-col gap-3 mt-4 mb-2">
               <a
-                href="https://wa.me/919999999999"
+                href="https://wa.me/918871217486"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-slate-200 bg-white text-sm text-slate-700"

@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "authorizetech",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-01-01",
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+  "d1_databases": [
+    {
+      "binding": "perpetualtech_db",
+      "database_name": "perpetualtech-db",
+      "database_id": "bd87d099-16ff-4b9c-b749-8a00008679ff"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Code2,
   Cloud,
@@ -94,6 +94,15 @@ const tabs: { key: ServiceKey; label: string; icon: typeof Code2 }[] = [
 export default function Services() {
   const [active, setActive] = useState<ServiceKey>('web');
   const current = services[active];
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const key = (e as CustomEvent<string>).detail as ServiceKey;
+      if (key && key in services) setActive(key);
+    };
+    window.addEventListener('navigate-service', handler);
+    return () => window.removeEventListener('navigate-service', handler);
+  }, []);
 
   return (
     <section id="services" className="section-padding relative">

@@ -1,1 +1,1 @@
-# PerpetualTech
+authorize tech

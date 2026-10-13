@@ -38,7 +38,7 @@ export default function About() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 bg-slate-100 text-xs text-slate-600 mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-              About PerpetualTech
+              About AuthorizeTech
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-5 text-slate-900">
               Engineering Partners for{' '}

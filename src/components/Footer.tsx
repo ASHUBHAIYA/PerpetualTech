@@ -1,3 +1,4 @@
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Boxes, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 
 const footerLinks = {
@@ -6,9 +7,63 @@ const footerLinks = {
   Legal: ['Privacy Policy', 'Terms of Service', 'SOW Portal', 'Refund Policy'],
 };
 
+const anchorMap: Record<string, string> = {
+  About: '#about',
+  Process: '#process',
+  Pricing: '#pricing',
+  'Tech Stack': '#tech-stack',
+  'Web Engineering': '#services',
+  'Cloud & DevOps': '#services',
+  'Performance Marketing': '#services',
+  'Managed Cloud': '#services',
+};
+
+const serviceKeyMap: Record<string, string> = {
+  'Web Engineering': 'web',
+  'Cloud & DevOps': 'cloud',
+  'Performance Marketing': 'marketing',
+  'Managed Cloud': 'managed',
+};
+
+const legalRouteMap: Record<string, string> = {
+  'Privacy Policy': '/privacy-policy',
+  'Terms of Service': '/terms-of-service',
+  'SOW Portal': '/sow-portal',
+  'Refund Policy': '/refund-policy',
+};
+
 export default function Footer() {
-  const scrollTo = (href: string) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToAnchor = (href: string) => {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleLinkClick = (link: string) => {
+    // Legal pages: navigate to a real route
+    if (legalRouteMap[link]) {
+      navigate(legalRouteMap[link]);
+      return;
+    }
+
+    // Service tabs: tell Services which tab to activate
+    if (serviceKeyMap[link]) {
+      window.dispatchEvent(
+        new CustomEvent('navigate-service', { detail: serviceKeyMap[link] })
+      );
+    }
+
+    // In-page anchors: if we're not on the home page, go home first, then scroll
+    const anchor = anchorMap[link];
+    if (anchor) {
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => scrollToAnchor(anchor), 100);
+      } else {
+        scrollToAnchor(anchor);
+      }
+    }
   };
 
   return (
@@ -26,7 +81,7 @@ export default function Footer() {
                 <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse-dot ring-2 ring-white" />
               </div>
               <span className="text-lg font-bold tracking-tight text-slate-900">
-                Perpetual<span className="text-sky-600">Tech</span>
+                Authorize<span className="text-sky-600">Tech</span>
               </span>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed mb-5 max-w-sm">
@@ -35,11 +90,11 @@ export default function Footer() {
             </p>
             <div className="space-y-2.5">
               <a
-                href="mailto:contact@perpetualtech.in"
+                href="mailto:contact@authorizetech.in"
                 className="flex items-center gap-2 text-sm text-slate-600 hover:text-sky-600 transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                contact@perpetualtech.in
+                contact@authorizetech.in
               </a>
               <div className="flex items-center gap-2 text-sm text-slate-600">
                 <MapPin className="w-4 h-4" />
@@ -57,19 +112,7 @@ export default function Footer() {
                 {links.map((link) => (
                   <li key={link}>
                     <button
-                      onClick={() => {
-                        const map: Record<string, string> = {
-                          About: '#about',
-                          Process: '#process',
-                          Pricing: '#pricing',
-                          'Tech Stack': '#tech-stack',
-                          'Web Engineering': '#services',
-                          'Cloud & DevOps': '#services',
-                          'Performance Marketing': '#services',
-                          'Managed Cloud': '#services',
-                        };
-                        if (map[link]) scrollTo(map[link]);
-                      }}
+                      onClick={() => handleLinkClick(link)}
                       className="text-sm text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1 group"
                     >
                       {link}
@@ -84,7 +127,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
-            &copy; 2026 PerpetualTech. All rights reserved.
+            &copy; 2026 AuthorizeTech. All rights reserved.
           </p>
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
